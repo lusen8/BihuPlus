@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="130dp"
+    android:background="@drawable/side_nav_bar"
+    android:orientation="vertical"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_marginTop="6dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/sym_def_app_icon" />
+
+    <TextView
+        android:id="@+id/exit"
+        android:layout_width="125dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="130dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:paddingLeft="40dp"
+        android:text="离线下载"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+    <TextView
+        android:layout_width="120dp"
+        android:id="@+id/collectin"
+        android:layout_above = "@+id/imageView"
+        android:layout_marginTop="80dp"
+        android:layout_height="50dp"
+        android:text="我的收藏"
+        android:gravity="center"
+        android:paddingLeft="36dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="6dp"
+        android:layout_width="match_parent"
+        android:paddingLeft="40dp"
+        android:layout_height="36dp"
+        android:text="name"
+        android:gravity="center_vertical"/>
+
+
+
+</FrameLayout>
