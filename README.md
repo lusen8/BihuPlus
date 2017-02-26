@@ -12,4 +12,4 @@ PS：此app还未解决bug有
  *日间与夜间模式的改变。
  *新闻额外消息的查询。
  
-截图如下 ：![截图](http://www.baidu.com/img/bdlogo.gif)
+截图如下 ：![截图](https://github.com/lusen8/BihuPlus/blob/master/app/src/main/res/mipmap-hdpi/Screenshot_1487929419.png)
