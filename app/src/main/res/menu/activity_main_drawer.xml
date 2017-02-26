@@ -1,36 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
-        <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/日常心理学"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
-    </group>
+            android:title="日常心理学" />
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
-        </menu>
-    </item>
+        <item
+        android:id="@+id/用户推荐日报"
+        android:icon="@drawable/ic_menu_slideshow"
+        android:title="用户推荐日报" />
+
+        <item
+            android:id="@+id/电影日报"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="电影日报" />
+
+        <item
+            android:id="@+id/不许无聊"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="不许无聊" />
+        <item
+            android:id="@+id/设计日报"
+            android:title="设计日报"
+            android:icon="@drawable/ic_menu_share" />
+
+        <item
+            android:id="@+id/大公司日报"
+            android:title="大公司日报"
+            android:icon="@drawable/ic_menu_send" />
+        <item
+            android:id="@+id/财经日报"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="财经日报" />
+
+        <item
+            android:id="@+id/互联网安全"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="互联网安全" />
+
+        <item
+            android:id="@+id/开始游戏"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="开始游戏" />
+        <item
+            android:id="@+id/音乐日报"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="音乐日报" />
+
+        <item
+            android:id="@+id/动漫日报"
+            android:title="动漫日报"
+            android:icon="@drawable/ic_menu_share" />
+        <item
+            android:id="@+id/体育日报"
+            android:title="体育日报"
+            android:icon="@drawable/ic_menu_send" />
+</group>
 
 </menu>

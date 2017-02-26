@@ -3,4 +3,15 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!--webView页面进度条, 背景色和进度条的颜色-->
+    <color name="default_web_progress_bar_bg">#F2F2F2</color>
+    <color name="default_web_progress_bar_progress">#FF5E5E</color>
+
+    <!--轮播图指示器（小点）-->
+    <color name="default_viewPager_dot_checked">#2b8bf8</color>
+    <color name="default_viewPager_dot_unchecked">#f5f5f9</color>
+    <color name="white">#ffffff</color>
+    <color name="First_pager">#97e6e5e5</color>
+    <color name="textbackground">#0b050505</color>
 </resources>
