@@ -11,3 +11,5 @@ PS：此app还未解决bug有
  *关于账号系统的一系列功能。
  *日间与夜间模式的改变。
  *新闻额外消息的查询。
+ 
+截图如下 ：![截图](http://www.baidu.com/img/bdlogo.gif)
