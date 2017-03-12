@@ -1,27 +1,28 @@
-package com.example.lusen.bihuplus.HttpUtils;
+package com.example.lusen.bihuplus.httputils;
 
-/**
- * Created by lusen on 2017/2/6.
- */
 import android.accounts.NetworkErrorException;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Handler;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class MyHttpURL {
-    public interface Callback{
-        void onResponse(String response);
+/**
+ * Created by lusen on 2017/2/9.
+ */
+
+public class ImageUtils {
+    public interface Callback_img{
+        void onResponse(Bitmap response);
     }
-    public static void get(final String url, final Callback callback){
+    public static void get(final String url, final ImageUtils.Callback_img callback){
         final Handler handler = new Handler();
         new Thread(new Runnable() {
             @Override
             public void run() {
-                final String response = NetUtils.get(url);
+                final Bitmap response = ImageNet.get(url);
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
@@ -31,26 +32,29 @@ public class MyHttpURL {
             }
         }).start();
     }
-
 }
 
-class NetUtils{
-    public static String get(final String url) {
+class ImageNet{
+    public static Bitmap get(final String url) {
         HttpURLConnection conn = null;
+        Bitmap bmp = null;
         try {
             // 利用string url构建URL对象
             URL mURL = new URL(url);
             conn = (HttpURLConnection) mURL.openConnection();
-            conn.setRequestMethod("GET");
+//            conn.setRequestMethod("GET");
             conn.setReadTimeout(5000);
+            conn.setDoInput(true);
+            conn.setUseCaches(false);
             conn.setConnectTimeout(10000);
 
             int responseCode = conn.getResponseCode();
             if (responseCode == 200) {
-
+                conn.connect();
                 InputStream is = conn.getInputStream();
-                String response = getStringFromInputStream(is);
-                return response;
+                bmp = BitmapFactory.decodeStream(is);
+                is.close();
+
             } else {
                 throw new NetworkErrorException("response status is "+responseCode);
             }
@@ -63,23 +67,7 @@ class NetUtils{
                 conn.disconnect();
             }
         }
-
-        return null;
+        return bmp;
     }
 
-    private static String getStringFromInputStream(InputStream is)
-            throws IOException {
-        ByteArrayOutputStream os = new ByteArrayOutputStream();
-        // 模板代码 必须熟练
-        byte[] buffer = new byte[1024];
-        int len = -1;
-        while ((len = is.read(buffer)) != -1) {
-            os.write(buffer, 0, len);
-        }
-        is.close();
-        String state = os.toString();// 把流中的数据转换成字符串,采用的编码是utf-8(模拟器默认编码)
-        os.close();
-        return state;
-    }
 }
-

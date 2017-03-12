@@ -1,4 +1,4 @@
-package com.example.lusen.bihuplus.HttpUtils;
+package com.example.lusen.bihuplus.httputils;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;

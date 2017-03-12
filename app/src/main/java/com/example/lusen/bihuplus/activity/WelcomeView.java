@@ -1,4 +1,4 @@
-package com.example.lusen.bihuplus.Activity;
+package com.example.lusen.bihuplus.activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -8,10 +8,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.lusen.bihuplus.Data.WelcomeData;
-import com.example.lusen.bihuplus.HttpUtils.ImageUtils;
-import com.example.lusen.bihuplus.HttpUtils.MyGsonUtil;
-import com.example.lusen.bihuplus.HttpUtils.MyHttpURL;
+import com.example.lusen.bihuplus.data.WelcomeData;
+import com.example.lusen.bihuplus.httputils.ImageUtils;
+import com.example.lusen.bihuplus.httputils.MyGsonUtil;
+import com.example.lusen.bihuplus.httputils.MyHttpURL;
 import com.example.lusen.bihuplus.R;
 
 import java.util.Timer;

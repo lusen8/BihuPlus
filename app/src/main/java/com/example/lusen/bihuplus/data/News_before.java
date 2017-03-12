@@ -1,4 +1,4 @@
-package com.example.lusen.bihuplus.Data;
+package com.example.lusen.bihuplus.data;
 
 import java.util.List;
 

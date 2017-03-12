@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Activity.WelcomeView"
+            android:name=".activity.WelcomeView"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -20,13 +20,13 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".Activity.MainActivity"
+        <activity android:name=".activity.MainActivity"
             android:label="首页"
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity android:name=".base.WebViewActivity"
             android:theme="@style/AppTheme.NoBar"/>
-        <activity android:name=".Activity.ThemeActivity" />
+        <activity android:name=".activity.ThemeActivity" />
     </application>
 
 </manifest>

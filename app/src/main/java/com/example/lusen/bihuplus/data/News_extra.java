@@ -1,4 +1,4 @@
-package com.example.lusen.bihuplus.Data;
+package com.example.lusen.bihuplus.data;
 
 /**
  * Created by lusen on 2017/2/8.

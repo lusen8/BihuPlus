@@ -1,4 +1,4 @@
-package com.example.lusen.bihuplus.Adapt;
+package com.example.lusen.bihuplus.adapt;
 
 import android.app.Activity;
 import android.content.Context;
@@ -13,8 +13,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.lusen.bihuplus.Data.First_Pager_Data;
-import com.example.lusen.bihuplus.HttpUtils.ImageUtils;
+import com.example.lusen.bihuplus.data.First_Pager_Data;
+import com.example.lusen.bihuplus.httputils.ImageUtils;
 import com.example.lusen.bihuplus.R;
 import com.example.lusen.bihuplus.base.WebViewActivity;
 

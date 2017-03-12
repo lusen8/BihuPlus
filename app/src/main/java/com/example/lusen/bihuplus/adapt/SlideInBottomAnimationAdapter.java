@@ -1,4 +1,4 @@
-package com.example.lusen.bihuplus.Adapt;
+package com.example.lusen.bihuplus.adapt;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;

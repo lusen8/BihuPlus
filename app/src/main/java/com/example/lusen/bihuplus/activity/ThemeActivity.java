@@ -1,4 +1,4 @@
-package com.example.lusen.bihuplus.Activity;
+package com.example.lusen.bihuplus.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,13 +9,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 
-import com.example.lusen.bihuplus.Adapt.Recylcle_theme_Adapt;
-import com.example.lusen.bihuplus.Data.First_Pager_Data;
-import com.example.lusen.bihuplus.Data.News_content;
-import com.example.lusen.bihuplus.Data.Themes_Data;
-import com.example.lusen.bihuplus.Data.Themes_content;
-import com.example.lusen.bihuplus.HttpUtils.MyGsonUtil;
-import com.example.lusen.bihuplus.HttpUtils.MyHttpURL;
+import com.example.lusen.bihuplus.adapt.Recylcle_theme_Adapt;
+import com.example.lusen.bihuplus.data.First_Pager_Data;
+import com.example.lusen.bihuplus.data.News_content;
+import com.example.lusen.bihuplus.data.Themes_Data;
+import com.example.lusen.bihuplus.data.Themes_content;
+import com.example.lusen.bihuplus.httputils.MyGsonUtil;
+import com.example.lusen.bihuplus.httputils.MyHttpURL;
 import com.example.lusen.bihuplus.R;
 import com.example.lusen.bihuplus.widget.RefreshRecyclerView;
 

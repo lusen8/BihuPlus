@@ -1,4 +1,4 @@
-package com.example.lusen.bihuplus.Activity;
+package com.example.lusen.bihuplus.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,15 +17,15 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.bartoszlipinski.recyclerviewheader2.RecyclerViewHeader;
-import com.example.lusen.bihuplus.Adapt.Recycle_Adapt;
-import com.example.lusen.bihuplus.Data.First_Pager_Data;
-import com.example.lusen.bihuplus.Data.News;
-import com.example.lusen.bihuplus.Data.News_before;
-import com.example.lusen.bihuplus.Data.News_content;
-import com.example.lusen.bihuplus.HttpUtils.Date_split;
-import com.example.lusen.bihuplus.HttpUtils.MyGsonUtil;
-import com.example.lusen.bihuplus.HttpUtils.MyHttpURL;
-import com.example.lusen.bihuplus.HttpUtils.Viewpager_lunbo;
+import com.example.lusen.bihuplus.adapt.Recycle_Adapt;
+import com.example.lusen.bihuplus.data.First_Pager_Data;
+import com.example.lusen.bihuplus.data.News;
+import com.example.lusen.bihuplus.data.News_before;
+import com.example.lusen.bihuplus.data.News_content;
+import com.example.lusen.bihuplus.httputils.Date_split;
+import com.example.lusen.bihuplus.httputils.MyGsonUtil;
+import com.example.lusen.bihuplus.httputils.MyHttpURL;
+import com.example.lusen.bihuplus.httputils.Viewpager_lunbo;
 import com.example.lusen.bihuplus.R;
 import com.example.lusen.bihuplus.widget.ADViewPager;
 import com.example.lusen.bihuplus.widget.RefreshRecyclerView;

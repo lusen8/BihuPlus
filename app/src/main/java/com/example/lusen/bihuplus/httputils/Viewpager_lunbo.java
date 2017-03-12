@@ -1,4 +1,4 @@
-package com.example.lusen.bihuplus.HttpUtils;
+package com.example.lusen.bihuplus.httputils;
 
 import android.app.Activity;
 import android.view.Gravity;

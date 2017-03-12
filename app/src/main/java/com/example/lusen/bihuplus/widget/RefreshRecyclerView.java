@@ -10,7 +10,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.lusen.bihuplus.Adapt.SlideInBottomAnimationAdapter;
+import com.example.lusen.bihuplus.adapt.SlideInBottomAnimationAdapter;
 
 /**
  * Created by lusen on 2017/2/18.
