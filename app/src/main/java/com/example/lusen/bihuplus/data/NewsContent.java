@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Created by lusen on 2017/2/15.
  */
 
-public class News_content {
+public class NewsContent {
     private String body;
     private String image_source;
     private String title;

@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Created by lusen on 2017/2/23.
  */
 
-public class Themes_Data {
+public class ThemesData {
     private int limit;
     private String [] subscribed;
     private ArrayList<Others> others;

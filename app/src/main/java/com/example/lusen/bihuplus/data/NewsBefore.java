@@ -6,7 +6,7 @@ import java.util.List;
  * Created by lusen on 2017/2/17.
  */
 
-public class News_before {
+public class NewsBefore {
     private String date;
     private List<News.Stories> stories;
 

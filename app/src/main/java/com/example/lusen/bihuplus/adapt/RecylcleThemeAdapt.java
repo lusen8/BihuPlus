@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.lusen.bihuplus.data.First_Pager_Data;
+import com.example.lusen.bihuplus.data.FirstPagerData;
 import com.example.lusen.bihuplus.httputils.ImageUtils;
 import com.example.lusen.bihuplus.R;
 import com.example.lusen.bihuplus.base.WebViewActivity;
@@ -24,26 +24,26 @@ import java.util.ArrayList;
  * Created by lusen on 2017/2/23.
  */
 
-public class Recylcle_theme_Adapt extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class RecylcleThemeAdapt extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     public static final int TYPE_HEADER = 0;
     public static final int TYPE_NORMAL = 1;
     public static final int TYPE_TEXT = 2;
     private View mHeaderView;
-    private ArrayList<First_Pager_Data> news;
+    private ArrayList<FirstPagerData> news;
     private Context context;
     private int number;
     private String [] ImageUrl_Img;
     private String [] title_Img;
     private Activity activity;
 
-    public Recylcle_theme_Adapt(Activity activity,Context context,ArrayList<First_Pager_Data> first_news){
+    public RecylcleThemeAdapt(Activity activity, Context context, ArrayList<FirstPagerData> first_news){
         this.news = first_news;
         this.context = context;
         this.activity = activity;
     }
 
-    public void setNews(ArrayList<First_Pager_Data> first_news){
+    public void setNews(ArrayList<FirstPagerData> first_news){
         this.news = first_news;
         Log.d("RecycleViewAdapt",this.news.get(0).getTitle());
     }
@@ -57,29 +57,29 @@ public class Recylcle_theme_Adapt extends RecyclerView.Adapter<RecyclerView.View
         RecyclerView.ViewHolder holder = null;
         if(TYPE_NORMAL == viewType){
             View v = mInflater.inflate(R.layout.item,parent,false);
-            holder = new Recylcle_theme_Adapt.MyHolder(v);
+            holder = new RecylcleThemeAdapt.MyHolder(v);
         }else if (TYPE_HEADER == viewType) {
             View v = mInflater.inflate(R.layout.activity_theme_img, parent, false);
-            holder = new Recylcle_theme_Adapt.ImageViewHolder(v);
+            holder = new RecylcleThemeAdapt.ImageViewHolder(v);
         }
         return holder;
     }
 
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
-        if(holder instanceof Recylcle_theme_Adapt.MyHolder){
+        if(holder instanceof RecylcleThemeAdapt.MyHolder){
             //设置标题
-            ((Recylcle_theme_Adapt.MyHolder) holder).tv.setText(news.get(position).getTitle());
-//            ((Recylcle_theme_Adapt.MyHolder) holder).tv.setText("aaaa");
+            ((RecylcleThemeAdapt.MyHolder) holder).tv.setText(news.get(position).getTitle());
+//            ((RecylcleThemeAdapt.MyHolder) holder).tv.setText("aaaa");
             //设置新闻小图片
             ImageUtils.get(news.get(position).getImagId(), new ImageUtils.Callback_img() {
                 @Override
                 public void onResponse(Bitmap response) {
-                    ((Recylcle_theme_Adapt.MyHolder) holder).image.setImageBitmap(response);
+                    ((RecylcleThemeAdapt.MyHolder) holder).image.setImageBitmap(response);
                 }
             });
             //设置点击事件
-            ((Recylcle_theme_Adapt.MyHolder) holder).layout.setOnClickListener(new View.OnClickListener() {
+            ((RecylcleThemeAdapt.MyHolder) holder).layout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     context.startActivity(new Intent(context, WebViewActivity.class)
@@ -87,13 +87,13 @@ public class Recylcle_theme_Adapt extends RecyclerView.Adapter<RecyclerView.View
                             .putExtra(WebViewActivity.WEB_URL, news.get(position).getImageHref()));
                 }
             });
-        }else if (holder instanceof Recylcle_theme_Adapt.ImageViewHolder){
+        }else if (holder instanceof RecylcleThemeAdapt.ImageViewHolder){
             //加载头部图片
             ImageUtils.get(ImageUrl_Img[number], new ImageUtils.Callback_img() {
                 @Override
                 public void onResponse(Bitmap response) {
 
-                    ((Recylcle_theme_Adapt.ImageViewHolder) holder).imageheader.setImageBitmap(response);
+                    ((RecylcleThemeAdapt.ImageViewHolder) holder).imageheader.setImageBitmap(response);
                 }
             });
             ((ImageViewHolder) holder).tvtheme.setText(title_Img[number]);
@@ -107,7 +107,7 @@ public class Recylcle_theme_Adapt extends RecyclerView.Adapter<RecyclerView.View
         return TYPE_NORMAL;
     }
 
-    public void addData(ArrayList<First_Pager_Data> newss){
+    public void addData(ArrayList<FirstPagerData> newss){
         this.news.addAll(newss);
         notifyDataSetChanged();
     }

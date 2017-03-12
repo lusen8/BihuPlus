@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.lusen.bihuplus.data.First_Pager_Data;
+import com.example.lusen.bihuplus.data.FirstPagerData;
 import com.example.lusen.bihuplus.httputils.ImageUtils;
 import com.example.lusen.bihuplus.R;
 import com.example.lusen.bihuplus.base.WebViewActivity;
@@ -26,20 +26,20 @@ import java.util.ArrayList;
  * Created by lusen on 2017/1/19.
  */
 
-public class Recycle_Adapt extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class RecycleAdapt extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     public static final int TYPE_HEADER = 0;
     public static final int TYPE_NORMAL = 1;
     public static final int TYPE_TEXT = 2;
     private View mHeaderView;
-    private ArrayList<First_Pager_Data> news;
+    private ArrayList<FirstPagerData> news;
     private Context context;
     private String [] ImageHref_Pager;
     private String [] ImageUrl_Pager;
     private ArrayList<String> title_Pager;
     private Activity activity;
 
-    public Recycle_Adapt(Activity activity,Context context,ArrayList<First_Pager_Data> first_news){
+    public RecycleAdapt(Activity activity, Context context, ArrayList<FirstPagerData> first_news){
         this.news = first_news;
         this.context = context;
         this.activity = activity;
@@ -54,7 +54,7 @@ public class Recycle_Adapt extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     public void setTitle_Pager(ArrayList<String> title_Pager){
         this.title_Pager = title_Pager;
     }
-    public void setNews(ArrayList<First_Pager_Data> first_news){
+    public void setNews(ArrayList<FirstPagerData> first_news){
         this.news = first_news;
         Log.d("RecycleViewAdapt",this.news.get(0).getTitle());
     }
@@ -127,7 +127,7 @@ public class Recycle_Adapt extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         return TYPE_NORMAL;
     }
 
-    public void addData(ArrayList<First_Pager_Data> newss){
+    public void addData(ArrayList<FirstPagerData> newss){
         this.news.addAll(newss);
         notifyDataSetChanged();
     }

@@ -17,11 +17,11 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.bartoszlipinski.recyclerviewheader2.RecyclerViewHeader;
-import com.example.lusen.bihuplus.adapt.Recycle_Adapt;
-import com.example.lusen.bihuplus.data.First_Pager_Data;
+import com.example.lusen.bihuplus.adapt.RecycleAdapt;
+import com.example.lusen.bihuplus.data.FirstPagerData;
 import com.example.lusen.bihuplus.data.News;
-import com.example.lusen.bihuplus.data.News_before;
-import com.example.lusen.bihuplus.data.News_content;
+import com.example.lusen.bihuplus.data.NewsBefore;
+import com.example.lusen.bihuplus.data.NewsContent;
 import com.example.lusen.bihuplus.httputils.Date_split;
 import com.example.lusen.bihuplus.httputils.MyGsonUtil;
 import com.example.lusen.bihuplus.httputils.MyHttpURL;
@@ -43,14 +43,14 @@ public class MainActivity extends AppCompatActivity
     private TextView textView;
     private int number;
     private RecyclerViewHeader recyclerViewHeader;
-    private Recycle_Adapt myAdapter;
+    private RecycleAdapt myAdapter;
     private Viewpager_lunbo viewpagerLunbo;
     private SwipeRefreshLayout swipeRefreshLayout;
     private ArrayList<String> titleList = new ArrayList<String>();
 
     private RefreshRecyclerView recyclerView;
     public ArrayList<News> list = new ArrayList<News>();
-    private ArrayList<First_Pager_Data> arrylist = new ArrayList<First_Pager_Data>();
+    private ArrayList<FirstPagerData> arrylist = new ArrayList<FirstPagerData>();
 
 //    @BindView(R.id.viewPager_main_ad)
     ADViewPager viewPager;
@@ -224,7 +224,7 @@ public class MainActivity extends AppCompatActivity
                 for(int j = 0;j < list.get(0).getStories().size();j++){    //准备好数据
                     if (list.get(0).getStories().get(j).getImages()[0] != null || list.get(0).getStories().get(j).getTitle() != null){
                         Log.d("Mainticity",list.get(0).getStories().get(j).getTitle());
-                         First_Pager_Data data = new First_Pager_Data(list.get(0).getStories().get(j).getTitle());
+                         FirstPagerData data = new FirstPagerData(list.get(0).getStories().get(j).getTitle());
                         data.setImagId(list.get(0).getStories().get(j).getImages()[0]);
                         arrylist.add(data);     //RecycleView在首页显示的内容
                     }
@@ -237,7 +237,7 @@ public class MainActivity extends AppCompatActivity
                         @Override
                         public void onResponse(String response) {
                             response = "["+response+"]";
-                            ArrayList<News_content> list_2 = (ArrayList<News_content>) MyGsonUtil.getObjectList(response,News_content.class);
+                            ArrayList<NewsContent> list_2 = (ArrayList<NewsContent>) MyGsonUtil.getObjectList(response,NewsContent.class);
                            arrylist.get(finalI).setImageHref(list_2.get(0).getShare_url());       //获取到RecycleView点击后要跳转的页面URL
                         }
                     });
@@ -250,7 +250,7 @@ public class MainActivity extends AppCompatActivity
                         @Override
                         public void onResponse(String response) {
                             response = "["+response+"]";
-                            ArrayList<News_content> list_1 = (ArrayList<News_content>) MyGsonUtil.getObjectList(response,News_content.class);
+                            ArrayList<NewsContent> list_1 = (ArrayList<NewsContent>) MyGsonUtil.getObjectList(response,NewsContent.class);
                             imageHref[finalI] = list_1.get(0).getShare_url();       //获取到ViewPager点击后需要跳转的页面URL
                         }
                     });
@@ -291,13 +291,13 @@ public class MainActivity extends AppCompatActivity
                           @Override
                           public void onResponse(String response) {
 
-                              final ArrayList<First_Pager_Data> first_pager_datas = new ArrayList<First_Pager_Data>();
+                              final ArrayList<FirstPagerData> first_pager_datas = new ArrayList<FirstPagerData>();
                               response = "["+response+"]";
-                              ArrayList<News_before> news_befores = (ArrayList<News_before>) MyGsonUtil.getObjectList(response,News_before.class);
+                              ArrayList<NewsBefore> news_befores = (ArrayList<NewsBefore>) MyGsonUtil.getObjectList(response,NewsBefore.class);
 
                               for(int j = 0;j < news_befores.get(0).getStories().size();j++){    //准备好数据
                                   Log.d("Mantivity before",news_befores.get(0).getStories().get(j).getImages()[0]+" ");
-                                      First_Pager_Data data = new First_Pager_Data(news_befores.get(0).getStories().get(j).getTitle());
+                                      FirstPagerData data = new FirstPagerData(news_befores.get(0).getStories().get(j).getTitle());
                                       data.setImagId(news_befores.get(0).getStories().get(j).getImages()[0]);
                                       first_pager_datas.add(data);
                               }
@@ -308,7 +308,7 @@ public class MainActivity extends AppCompatActivity
                                       @Override
                                       public void onResponse(String response) {
                                           response = "["+response+"]";
-                                          ArrayList<News_content> list_2 = (ArrayList<News_content>) MyGsonUtil.getObjectList(response,News_content.class);
+                                          ArrayList<NewsContent> list_2 = (ArrayList<NewsContent>) MyGsonUtil.getObjectList(response,NewsContent.class);
                                           first_pager_datas.get(finalI).setImageHref(list_2.get(0).getShare_url());       //获取到RecycleView点击后要跳转的页面URL
                                       }
                                   });
@@ -345,7 +345,7 @@ public class MainActivity extends AppCompatActivity
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setLoadMoreEnable(true);//允许加载更多
         recyclerView.setFooterResource(R.layout.foot);//设置脚布局
-        myAdapter = new Recycle_Adapt(this,MainActivity.this,arrylist);
+        myAdapter = new RecycleAdapt(this,MainActivity.this,arrylist);
 
     }
 

@@ -4,13 +4,13 @@ package com.example.lusen.bihuplus.data;
  * Created by lusen on 2017/2/14.
  */
 
-public class First_Pager_Data {
+public class FirstPagerData {
     private String title;
     private String imageId;
     private String imageHref;
     private String image_theme;
 
-    public First_Pager_Data(String title){
+    public FirstPagerData(String title){
         this.title = title;
         this.imageId = imageId;
     }

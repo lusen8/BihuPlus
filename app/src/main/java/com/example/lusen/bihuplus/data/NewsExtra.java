@@ -4,7 +4,7 @@ package com.example.lusen.bihuplus.data;
  * Created by lusen on 2017/2/8.
  */
 
-public class News_extra {
+public class NewsExtra {
     private int long_comments;
     private int popularity;
     private int short_comments;

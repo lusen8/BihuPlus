@@ -9,11 +9,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 
-import com.example.lusen.bihuplus.adapt.Recylcle_theme_Adapt;
-import com.example.lusen.bihuplus.data.First_Pager_Data;
-import com.example.lusen.bihuplus.data.News_content;
-import com.example.lusen.bihuplus.data.Themes_Data;
-import com.example.lusen.bihuplus.data.Themes_content;
+import com.example.lusen.bihuplus.adapt.RecylcleThemeAdapt;
+import com.example.lusen.bihuplus.data.FirstPagerData;
+import com.example.lusen.bihuplus.data.NewsContent;
+import com.example.lusen.bihuplus.data.ThemesData;
+import com.example.lusen.bihuplus.data.ThemesContent;
 import com.example.lusen.bihuplus.httputils.MyGsonUtil;
 import com.example.lusen.bihuplus.httputils.MyHttpURL;
 import com.example.lusen.bihuplus.R;
@@ -36,13 +36,13 @@ public class ThemeActivity extends AppCompatActivity {
     //顶部标题
     private String [] titlt_theme = new String[12];
     //适配器
-    private Recylcle_theme_Adapt myAdapter;
+    private RecylcleThemeAdapt myAdapter;
     //下拉刷新控件
     private SwipeRefreshLayout swipeRefreshLayout;
     //recycleView实例
     private RefreshRecyclerView recyclerView;
     //rencycle中的内容（图片和标题）
-    private ArrayList<First_Pager_Data> arrylist = new ArrayList<First_Pager_Data>();
+    private ArrayList<FirstPagerData> arrylist = new ArrayList<FirstPagerData>();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +65,7 @@ public class ThemeActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setLoadMoreEnable(true);//允许加载更多
         recyclerView.setFooterResource(R.layout.foot);//设置脚布局
-        myAdapter = new Recylcle_theme_Adapt(this,ThemeActivity.this,arrylist);
+        myAdapter = new RecylcleThemeAdapt(this,ThemeActivity.this,arrylist);
 
     }
     private Handler handler = new Handler();
@@ -93,7 +93,7 @@ public class ThemeActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 response = "["+response+"]";
-                final ArrayList <Themes_Data> list= (ArrayList<Themes_Data>) MyGsonUtil.getObjectList(response,Themes_Data.class);
+                final ArrayList <ThemesData> list= (ArrayList<ThemesData>) MyGsonUtil.getObjectList(response,ThemesData.class);
                 for(int j = 0;j < list.get(0).getOthers().size();j++){    //准备好数据
 
                     imageUrls_theme[j] = list.get(0).getOthers().get(j).getThumbnail(); //所有的header图片路径
@@ -109,11 +109,11 @@ public class ThemeActivity extends AppCompatActivity {
                         public void onResponse(String response) {
                             response = "["+response+"]";
 //                            Log.d("ThemeActivity",response);
-                            ArrayList<Themes_content> list_2 = (ArrayList<Themes_content>) MyGsonUtil.getObjectList(response,Themes_content.class);
+                            ArrayList<ThemesContent> list_2 = (ArrayList<ThemesContent>) MyGsonUtil.getObjectList(response,ThemesContent.class);
                             Log.d("ThemeActivity",list_2.get(0).getStories().get(2).getImages()[0]+" ");
                             for (int j = 0; j < list_2.get(0).getStories().size();j++){
 //                                Log.d("ThemeActivity",list_2.get(0).getStories().get(1).getTitle());
-                                First_Pager_Data data1 = new First_Pager_Data(list_2.get(0).getStories().get(j).getTitle());
+                                FirstPagerData data1 = new FirstPagerData(list_2.get(0).getStories().get(j).getTitle());
 //                                if (j != 0 && j!= 1){
 //                                    Log.d("ThemeActivityyyyyyyy",list_2.get(0).getStories().get(3).toString()+" ");
                                     data1.setImage_theme(list_2.get(0).getStories().get(number).getImages()[0]);
@@ -126,7 +126,7 @@ public class ThemeActivity extends AppCompatActivity {
                                 @Override
                                 public void onResponse(String response) {
                                     response = "["+response+"]";
-                                    ArrayList<News_content> list_3 = (ArrayList<News_content>) MyGsonUtil.getObjectList(response,News_content.class);
+                                    ArrayList<NewsContent> list_3 = (ArrayList<NewsContent>) MyGsonUtil.getObjectList(response,NewsContent.class);
                                     //设置跳转路径
                                     arrylist.get(finalI).setImageHref(list_3.get(0).getShare_url());
 
@@ -148,7 +148,7 @@ public class ThemeActivity extends AppCompatActivity {
 //                        @Override
 //                        public void onResponse(String response) {
 //                            response = "["+response+"]";
-//                            ArrayList<News_content> list_1 = (ArrayList<News_content>) MyGsonUtil.getObjectList(response,News_content.class);
+//                            ArrayList<NewsContent> list_1 = (ArrayList<NewsContent>) MyGsonUtil.getObjectList(response,NewsContent.class);
 //                        }
 //                    });
 //                }

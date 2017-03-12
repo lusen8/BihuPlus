@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Created by lusen on 2017/2/23.
  */
 
-public class Themes_content {
+public class ThemesContent {
     private ArrayList<Stories> stories;
     private String description;
     private String name;
