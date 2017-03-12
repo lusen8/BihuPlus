@@ -22,10 +22,10 @@ import com.example.lusen.bihuplus.data.FirstPagerData;
 import com.example.lusen.bihuplus.data.News;
 import com.example.lusen.bihuplus.data.NewsBefore;
 import com.example.lusen.bihuplus.data.NewsContent;
-import com.example.lusen.bihuplus.httputils.Date_split;
+import com.example.lusen.bihuplus.httputils.DateSplit;
 import com.example.lusen.bihuplus.httputils.MyGsonUtil;
 import com.example.lusen.bihuplus.httputils.MyHttpURL;
-import com.example.lusen.bihuplus.httputils.Viewpager_lunbo;
+import com.example.lusen.bihuplus.httputils.ViewpagerLunbo;
 import com.example.lusen.bihuplus.R;
 import com.example.lusen.bihuplus.widget.ADViewPager;
 import com.example.lusen.bihuplus.widget.RefreshRecyclerView;
@@ -39,12 +39,12 @@ public class MainActivity extends AppCompatActivity
     //viewpager一套
     private String[] imageUrls = new String[5];
     private String[] imageHref = new String[5];
-    private Date_split data;
+    private DateSplit data;
     private TextView textView;
     private int number;
     private RecyclerViewHeader recyclerViewHeader;
     private RecycleAdapt myAdapter;
-    private Viewpager_lunbo viewpagerLunbo;
+    private ViewpagerLunbo viewpagerLunbo;
     private SwipeRefreshLayout swipeRefreshLayout;
     private ArrayList<String> titleList = new ArrayList<String>();
 
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity
         textView = (TextView) findViewById(R.id.title);
         recyclerView = (RefreshRecyclerView) findViewById(recycle);    //实例化RecycleView
         recyclerView.setLayoutManager(new LinearLayoutManager(this));    //决定布局
-        viewpagerLunbo = new Viewpager_lunbo(this,viewPager);
+        viewpagerLunbo = new ViewpagerLunbo(this,viewPager);
 
 //        ButterKnife.bind(this);
 
@@ -220,7 +220,7 @@ public class MainActivity extends AppCompatActivity
             public void onResponse(String response) {
                 response = "["+response+"]";
                  list= (ArrayList<News>) MyGsonUtil.getObjectList(response,News.class);
-                data = new Date_split(list.get(0).getDate());
+                data = new DateSplit(list.get(0).getDate());
                 for(int j = 0;j < list.get(0).getStories().size();j++){    //准备好数据
                     if (list.get(0).getStories().get(j).getImages()[0] != null || list.get(0).getStories().get(j).getTitle() != null){
                         Log.d("Mainticity",list.get(0).getStories().get(j).getTitle());
@@ -264,10 +264,10 @@ public class MainActivity extends AppCompatActivity
                 }
 
                 //加载viewpager轮播图三部曲——已经封装到RecycleView的在适配器中
-//                viewpagerLunbo.setImageHref(imageHref);
-//                viewpagerLunbo.setImageUrls(imageUrls);
-//                viewpagerLunbo.setTitle(titleList);
-//                viewpagerLunbo.setSubView();    //最后调用
+//                ViewpagerLunbo.setImageHref(imageHref);
+//                ViewpagerLunbo.setImageUrls(imageUrls);
+//                ViewpagerLunbo.setTitle(titleList);
+//                ViewpagerLunbo.setSubView();    //最后调用
                 myAdapter.setNews(arrylist);
                 myAdapter.setImageHref_Pager(imageHref);    //设置viewpager图片跳转路径
                 myAdapter.setImageUrl_Pager(imageUrls);     //设置ViewPager图片加载路径
