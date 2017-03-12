@@ -10,12 +10,12 @@ import java.util.Date;
  * Created by lusen on 2017/2/17.
  */
 
-public class Date_split {
+public class DateSplit {
     private String dataBase;
     private int year;
     private int month;
     private int day;
-    public Date_split(String dataBase){
+    public DateSplit(String dataBase){
         this.dataBase = dataBase;
     }
 
