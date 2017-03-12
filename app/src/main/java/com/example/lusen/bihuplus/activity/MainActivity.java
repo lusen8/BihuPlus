@@ -16,7 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.bartoszlipinski.recyclerviewheader2.RecyclerViewHeader;
+import com.example.lusen.bihuplus.R;
 import com.example.lusen.bihuplus.adapt.RecycleAdapt;
 import com.example.lusen.bihuplus.data.FirstPagerData;
 import com.example.lusen.bihuplus.data.News;
@@ -25,8 +25,6 @@ import com.example.lusen.bihuplus.data.NewsContent;
 import com.example.lusen.bihuplus.httputils.DateSplit;
 import com.example.lusen.bihuplus.httputils.MyGsonUtil;
 import com.example.lusen.bihuplus.httputils.MyHttpURL;
-import com.example.lusen.bihuplus.httputils.ViewpagerLunbo;
-import com.example.lusen.bihuplus.R;
 import com.example.lusen.bihuplus.widget.ADViewPager;
 import com.example.lusen.bihuplus.widget.RefreshRecyclerView;
 
@@ -42,9 +40,7 @@ public class MainActivity extends AppCompatActivity
     private DateSplit data;
     private TextView textView;
     private int number;
-    private RecyclerViewHeader recyclerViewHeader;
     private RecycleAdapt myAdapter;
-    private ViewpagerLunbo viewpagerLunbo;
     private SwipeRefreshLayout swipeRefreshLayout;
     private ArrayList<String> titleList = new ArrayList<String>();
 
@@ -52,7 +48,6 @@ public class MainActivity extends AppCompatActivity
     public ArrayList<News> list = new ArrayList<News>();
     private ArrayList<FirstPagerData> arrylist = new ArrayList<FirstPagerData>();
 
-//    @BindView(R.id.viewPager_main_ad)
     ADViewPager viewPager;
 
 
@@ -64,7 +59,7 @@ public class MainActivity extends AppCompatActivity
         textView = (TextView) findViewById(R.id.title);
         recyclerView = (RefreshRecyclerView) findViewById(recycle);    //实例化RecycleView
         recyclerView.setLayoutManager(new LinearLayoutManager(this));    //决定布局
-        viewpagerLunbo = new ViewpagerLunbo(this,viewPager);
+//        viewpagerLunbo = new ViewpagerLunbo(this,viewPager);
 
 //        ButterKnife.bind(this);
 
@@ -125,13 +120,6 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
-//        MyHttpURL.get("http://news-at.zhihu.com/api/4/themes", new MyHttpURL.Callback() {
-//            @Override
-//            public void onResponse(String response) {
-//
-//            }
-//        });
 
         if (id == R.id.日常心理学) {
             Log.d("maintivity","点击成功");
@@ -237,8 +225,8 @@ public class MainActivity extends AppCompatActivity
                         @Override
                         public void onResponse(String response) {
                             response = "["+response+"]";
-                            ArrayList<NewsContent> list_2 = (ArrayList<NewsContent>) MyGsonUtil.getObjectList(response,NewsContent.class);
-                           arrylist.get(finalI).setImageHref(list_2.get(0).getShare_url());       //获取到RecycleView点击后要跳转的页面URL
+                            ArrayList<NewsContent> list2 = (ArrayList<NewsContent>) MyGsonUtil.getObjectList(response,NewsContent.class);
+                           arrylist.get(finalI).setImageHref(list2.get(0).getShare_url());       //获取到RecycleView点击后要跳转的页面URL
                         }
                     });
                 }
@@ -250,8 +238,8 @@ public class MainActivity extends AppCompatActivity
                         @Override
                         public void onResponse(String response) {
                             response = "["+response+"]";
-                            ArrayList<NewsContent> list_1 = (ArrayList<NewsContent>) MyGsonUtil.getObjectList(response,NewsContent.class);
-                            imageHref[finalI] = list_1.get(0).getShare_url();       //获取到ViewPager点击后需要跳转的页面URL
+                            ArrayList<NewsContent> list1 = (ArrayList<NewsContent>) MyGsonUtil.getObjectList(response,NewsContent.class);
+                            imageHref[finalI] = list1.get(0).getShare_url();       //获取到ViewPager点击后需要跳转的页面URL
                         }
                     });
                 }
@@ -291,7 +279,7 @@ public class MainActivity extends AppCompatActivity
                           @Override
                           public void onResponse(String response) {
 
-                              final ArrayList<FirstPagerData> first_pager_datas = new ArrayList<FirstPagerData>();
+                              final ArrayList<FirstPagerData> firstpagerdatas = new ArrayList<FirstPagerData>();
                               response = "["+response+"]";
                               ArrayList<NewsBefore> news_befores = (ArrayList<NewsBefore>) MyGsonUtil.getObjectList(response,NewsBefore.class);
 
@@ -299,7 +287,7 @@ public class MainActivity extends AppCompatActivity
                                   Log.d("Mantivity before",news_befores.get(0).getStories().get(j).getImages()[0]+" ");
                                       FirstPagerData data = new FirstPagerData(news_befores.get(0).getStories().get(j).getTitle());
                                       data.setImagId(news_befores.get(0).getStories().get(j).getImages()[0]);
-                                      first_pager_datas.add(data);
+                                      firstpagerdatas.add(data);
                               }
                               //加载过往消息的跳转路径
                               for(int i = 0;i < list.get(0).getStories().size();i++){
@@ -308,12 +296,12 @@ public class MainActivity extends AppCompatActivity
                                       @Override
                                       public void onResponse(String response) {
                                           response = "["+response+"]";
-                                          ArrayList<NewsContent> list_2 = (ArrayList<NewsContent>) MyGsonUtil.getObjectList(response,NewsContent.class);
-                                          first_pager_datas.get(finalI).setImageHref(list_2.get(0).getShare_url());       //获取到RecycleView点击后要跳转的页面URL
+                                          ArrayList<NewsContent> list2 = (ArrayList<NewsContent>) MyGsonUtil.getObjectList(response,NewsContent.class);
+                                          firstpagerdatas.get(finalI).setImageHref(list2.get(0).getShare_url());       //获取到RecycleView点击后要跳转的页面URL
                                       }
                                   });
                               }
-                              myAdapter.addData(first_pager_datas);
+                              myAdapter.addData(firstpagerdatas);
                           }
                       });
                         recyclerView.notifyData();//刷新数据
