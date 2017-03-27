@@ -1,33 +1,31 @@
 package com.example.lusen.bihuplus.activity;
 
-import android.content.Intent;
+import android.app.Fragment;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
+import com.example.lusen.bihuplus.R;
 import com.example.lusen.bihuplus.adapt.RecylcleThemeAdapt;
 import com.example.lusen.bihuplus.data.FirstPagerData;
 import com.example.lusen.bihuplus.data.NewsContent;
-import com.example.lusen.bihuplus.data.ThemesData;
 import com.example.lusen.bihuplus.data.ThemesContent;
+import com.example.lusen.bihuplus.data.ThemesData;
 import com.example.lusen.bihuplus.httputils.MyGsonUtil;
 import com.example.lusen.bihuplus.httputils.MyHttpURL;
-import com.example.lusen.bihuplus.R;
 import com.example.lusen.bihuplus.widget.RefreshRecyclerView;
 
 import java.util.ArrayList;
 
-import static com.example.lusen.bihuplus.R.id.recycle;
-
 /**
- * Created by lusen on 2017/2/23.
+ * Created by lusen on 2017/3/20.
  */
 
-public class ThemeActivity extends AppCompatActivity {
+public class ThemeFragment extends Fragment{
 
     //第几个页面
     private int number;
@@ -43,31 +41,29 @@ public class ThemeActivity extends AppCompatActivity {
     private RefreshRecyclerView recyclerView;
     //rencycle中的内容（图片和标题）
     private ArrayList<FirstPagerData> arrylist = new ArrayList<FirstPagerData>();
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.content_main);
 
-        Intent intent = getIntent();
-        intent.getIntExtra("number",number);
-        number = (int) intent.getSerializableExtra("number");
-        Log.d("Themeeeee",number+"nnnnn ");
-        initView();
+    public ThemeFragment(){}
+    public ThemeFragment(RecylcleThemeAdapt myAdapter, RefreshRecyclerView recyclerView, int number){
+        this.recyclerView = recyclerView;
+        this.myAdapter = myAdapter;
+        this.number = number;
+
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.content_main, null);
+
+
+        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.demo_swiperefreshlayout);
+        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_red_light, android.R.color.holo_blue_light, android.R.color.holo_green_light);
+
         hot_news();
         initListener();
+        return view;
     }
 
-
-    private void initView() {
-        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.demo_swiperefreshlayout);
-        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_red_light, android.R.color.holo_blue_light, android.R.color.holo_green_light);
-        recyclerView = (RefreshRecyclerView) findViewById(recycle);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setLoadMoreEnable(true);//允许加载更多
-        recyclerView.setFooterResource(R.layout.foot);//设置脚布局
-        myAdapter = new RecylcleThemeAdapt(this,ThemeActivity.this,arrylist);
-
-    }
     private Handler handler = new Handler();
     private void initListener() {       //加载过往消息
 
@@ -109,13 +105,13 @@ public class ThemeActivity extends AppCompatActivity {
                         public void onResponse(String response) {
                             response = "["+response+"]";
                             ArrayList<ThemesContent> list2 = (ArrayList<ThemesContent>) MyGsonUtil.getObjectList(response,ThemesContent.class);
-                            Log.d("ThemeActivity",list2.get(0).getStories().get(number).getImages()[0]+" ");
+//                            Log.d("ThemeActivity",list2.get(0).getStories().get(number).getImages()[0]+" ");
                             for (int j = 0; j < list2.get(0).getStories().size();j++){
                                 Log.d("ThemeActivity",list2.get(0).getStories().get(1).getTitle());
                                 FirstPagerData data1 = new FirstPagerData(list2.get(0).getStories().get(j).getTitle());
 //                                if (j != 0 && j!= 1){
 //                                    Log.d("ThemeActivityyyyyyyy",list_2.get(0).getStories().get(3).toString()+" ");
-                                    data1.setImage_theme(list2.get(0).getStories().get(number).getImages()[0]);
+                                data1.setImage_theme(list2.get(0).getStories().get(number).getImages()[0]);
 //                                data1.setImage_theme("http://pic1.zhimg.com/56d1d1202077c7b5b0e48e3b7d3ebb60_t.jpg");
 //                                }
                                 arrylist.add(data1);     //RecycleView在首页显示的内容
@@ -140,25 +136,7 @@ public class ThemeActivity extends AppCompatActivity {
                     });
                 }
 
-//                //获取到viewpager中的消息内容 ，即点击跳转的路径
-//                for(int i = 0;i < list.get(0).getTop_stories().size();i++){
-//                    final int finalI = i;
-//                    MyHttpURL.get("http://news-at.zhihu.com/api/4/news/" + list.get(0).getTop_stories().get(i).getId(), new MyHttpURL.Callback() {
-//                        @Override
-//                        public void onResponse(String response) {
-//                            response = "["+response+"]";
-//                            ArrayList<NewsContent> list_1 = (ArrayList<NewsContent>) MyGsonUtil.getObjectList(response,NewsContent.class);
-//                        }
-//                    });
-//                }
-
-     //获取到viewPager要显示图片URL
-     //获取到viewPage要显示的标题
-
-
-
             }
         });
     }
-
 }

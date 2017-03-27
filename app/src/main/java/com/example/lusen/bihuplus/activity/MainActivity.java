@@ -1,9 +1,9 @@
 package com.example.lusen.bihuplus.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.example.lusen.bihuplus.R;
 import com.example.lusen.bihuplus.adapt.RecycleAdapt;
+import com.example.lusen.bihuplus.adapt.RecylcleThemeAdapt;
 import com.example.lusen.bihuplus.data.FirstPagerData;
 import com.example.lusen.bihuplus.data.News;
 import com.example.lusen.bihuplus.data.NewsBefore;
@@ -40,6 +41,13 @@ public class MainActivity extends AppCompatActivity
     private DateSplit data;
     private TextView textView;
     private int number;
+
+    //适配器
+    private RecylcleThemeAdapt myThemeAdapter;
+
+    FragmentManager fragmentManager;
+    android.app.FragmentTransaction transaction;
+
     private RecycleAdapt myAdapter;
     private SwipeRefreshLayout swipeRefreshLayout;
     private ArrayList<String> titleList = new ArrayList<String>();
@@ -59,10 +67,7 @@ public class MainActivity extends AppCompatActivity
         textView = (TextView) findViewById(R.id.title);
         recyclerView = (RefreshRecyclerView) findViewById(recycle);    //实例化RecycleView
         recyclerView.setLayoutManager(new LinearLayoutManager(this));    //决定布局
-//        viewpagerLunbo = new ViewpagerLunbo(this,viewPager);
-
 //        ButterKnife.bind(this);
-
         initView();
         hot_news();     //加载viewpager 和recycleView 一条龙服务（加载图片url，获取）。
 
@@ -106,7 +111,6 @@ public class MainActivity extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
@@ -123,82 +127,110 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.日常心理学) {
             Log.d("maintivity","点击成功");
-            Intent intent = new Intent(MainActivity.this, ThemeActivity.class);
-            number = 0;
-            intent.putExtra("number",number);
-            startActivity(intent);
+            ThemeFragment themeFragment = new ThemeFragment(myThemeAdapter,recyclerView,0);
+            transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.recycle,themeFragment);
+//            transaction.addToBackStack(null);
+            transaction.commit();
+
         } else if (id == R.id.用户推荐日报) {
             Log.d("maintivity","点击成功");
-            number = 1;
-            Intent intent = new Intent(MainActivity.this, ThemeActivity.class);
-            intent.putExtra("number",number);
-            startActivity(intent);
+            ThemeFragment themeFragment = new ThemeFragment(myThemeAdapter,recyclerView,1);
+            transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.content_main,themeFragment);
+//            transaction.addToBackStack(null);
+            transaction.commit();
         } else if (id == R.id.电影日报) {
             Log.d("maintivity","点击成功");
-            number = 2;
-            Intent intent = new Intent(MainActivity.this, ThemeActivity.class);
-            intent.putExtra("number",number);
-            startActivity(intent);
+            ThemeFragment themeFragment = new ThemeFragment(myThemeAdapter,recyclerView,2);
+            transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.content_main,themeFragment);
+//            transaction.addToBackStack(null);
+            transaction.commit();
         } else if (id == R.id.不许无聊) {
             Log.d("maintivity","点击成功");
-            number = 3;
-            Intent intent = new Intent(MainActivity.this, ThemeActivity.class);
-            intent.putExtra("number",number);
-            startActivity(intent);
+            ThemeFragment themeFragment = new ThemeFragment(myThemeAdapter,recyclerView,3);
+            transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.content_main,themeFragment);
+//            transaction.addToBackStack(null);
+            transaction.commit();
         } else if (id == R.id.设计日报) {
             Log.d("maintivity","点击成功");
-            number = 4;
-            Intent intent = new Intent(MainActivity.this, ThemeActivity.class);
-            intent.putExtra("number",number);
-            startActivity(intent);
+            ThemeFragment themeFragment = new ThemeFragment(myThemeAdapter,recyclerView,4);
+            transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.content_main,themeFragment);
+//            transaction.addToBackStack(null);
+            transaction.commit();
         } else if (id == R.id.大公司日报) {
             Log.d("maintivity","点击成功");
-            number = 5;
-            Intent intent = new Intent(MainActivity.this, ThemeActivity.class);
-            intent.putExtra("number",number);
-            startActivity(intent);
+            ThemeFragment themeFragment = new ThemeFragment(myThemeAdapter,recyclerView,5);
+            transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.content_main,themeFragment);
+//            transaction.addToBackStack(null);
+            transaction.commit();
         }else if (id == R.id.财经日报) {
             Log.d("maintivity","点击成功");
-            number = 6;
-            Intent intent = new Intent(MainActivity.this, ThemeActivity.class);
-            intent.putExtra("number",number);
-            startActivity(intent);
+            ThemeFragment themeFragment = new ThemeFragment(myThemeAdapter,recyclerView,6);
+            transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.content_main,themeFragment);
+//            transaction.addToBackStack(null);
+            transaction.commit();
         } else if (id == R.id.互联网安全) {
             Log.d("maintivity","点击成功");
-            number = 7;
-            Intent intent = new Intent(MainActivity.this, ThemeActivity.class);
-            intent.putExtra("number",number);
-            startActivity(intent);
+            ThemeFragment themeFragment = new ThemeFragment(myThemeAdapter,recyclerView,7);
+            transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.content_main,themeFragment);
+//            transaction.addToBackStack(null);
+            transaction.commit();
         } else if (id == R.id.开始游戏) {
             Log.d("maintivity","点击成功");
-            number = 8;
-            Intent intent = new Intent(MainActivity.this, ThemeActivity.class);
-            intent.putExtra("number",number);
-            startActivity(intent);
+            ThemeFragment themeFragment = new ThemeFragment(myThemeAdapter,recyclerView,8);
+            transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.content_main,themeFragment);
+//            transaction.addToBackStack(null);
+            transaction.commit();
         } else if (id == R.id.音乐日报) {
             Log.d("maintivity","点击成功");
-            number = 9;
-            Intent intent = new Intent(MainActivity.this, ThemeActivity.class);
-            intent.putExtra("number",number);
-            startActivity(intent);
+            ThemeFragment themeFragment = new ThemeFragment(myThemeAdapter,recyclerView,9);
+            transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.content_main,themeFragment);
+//            transaction.addToBackStack(null);
+            transaction.commit();
         } else if (id == R.id.体育日报) {
             Log.d("maintivity","点击成功");
-            number = 11;
-            Intent intent = new Intent(MainActivity.this, ThemeActivity.class);
-            intent.putExtra("number",number);
-            startActivity(intent);
+            ThemeFragment themeFragment = new ThemeFragment(myThemeAdapter,recyclerView,10);
+            transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.content_main,themeFragment);
+//            transaction.addToBackStack(null);
+            transaction.commit();
         }else if (id == R.id.动漫日报) {
             Log.d("maintivity","点击成功");
-            number = 10;
-            Intent intent = new Intent(MainActivity.this, ThemeActivity.class);
-            intent.putExtra("number",number);
-            startActivity(intent);
+            ThemeFragment themeFragment = new ThemeFragment(myThemeAdapter,recyclerView,11);
+            transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.content_main,themeFragment);
+//          transaction.addToBackStack(null);
+            transaction.commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+//    private void replaceFragment(Fragment fragment) {
+//// 1.获取FragmentManager，在活动中可以直接通过调用getFragmentManager()方法得到
+//        fragmentManager =getSupportFragmentManager();
+//// 2.开启一个事务，通过调用beginTransaction()方法开启
+//        transaction = fragmentManager.beginTransaction();
+//// 3.向容器内添加或替换碎片，一般使用replace()方法实现，需要传入容器的id和待添加的碎片实例
+//        transaction.replace(R.id.content_main, fragment);  //fr_container不能为fragment布局，可使用线性布局相对布局等。
+//// 4.使用addToBackStack()方法，将事务添加到返回栈中，填入的是用于描述返回栈的一个名字
+//        transaction.addToBackStack(null);
+//// 5.提交事物,调用commit()方法来完成
+//        transaction.commit();
+//    }
+
+
 
     public void hot_news(){
 
@@ -250,12 +282,6 @@ public class MainActivity extends AppCompatActivity
                         titleList.add(list.get(0).getTop_stories().get(i).getTitle());      //获取到viewPage要显示的标题
                     }
                 }
-
-                //加载viewpager轮播图三部曲——已经封装到RecycleView的在适配器中
-//                ViewpagerLunbo.setImageHref(imageHref);
-//                ViewpagerLunbo.setImageUrls(imageUrls);
-//                ViewpagerLunbo.setTitle(titleList);
-//                ViewpagerLunbo.setSubView();    //最后调用
                 myAdapter.setNews(arrylist);
                 myAdapter.setImageHref_Pager(imageHref);    //设置viewpager图片跳转路径
                 myAdapter.setImageUrl_Pager(imageUrls);     //设置ViewPager图片加载路径
@@ -333,6 +359,7 @@ public class MainActivity extends AppCompatActivity
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setLoadMoreEnable(true);//允许加载更多
         recyclerView.setFooterResource(R.layout.foot);//设置脚布局
+        myThemeAdapter = new RecylcleThemeAdapt(this,MainActivity.this,arrylist);
         myAdapter = new RecycleAdapt(this,MainActivity.this,arrylist);
 
     }
